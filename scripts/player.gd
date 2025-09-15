@@ -40,11 +40,16 @@ func _physics_process(_delta):
 	# Godot's CharacterBody2D uses a velocity system
 	
 	
-	
 	# TODO: Update facing direction based on movement
-	# Use if statements to check xDirection and yDirection
-	# Set facing to "right", "left", "down", or "up"
-	# Only update facing when actually moving (direction != 0)
+	if xDirection > 0:
+		facing = "right"
+	elif xDirection < 0:
+		facing = "left"
+	if yDirection < 0:
+		facing = "up"
+	elif yDirection > 0:
+		facing = "down"
+	update_animation()
 	
 	
 	# TODO: Update animation based on facing direction
@@ -56,6 +61,11 @@ func _physics_process(_delta):
 
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
+	
+	if xDirection == 0 && yDirection == 0:
+		_animation_player.play("idle_" + facing)
+	else:
+		_animation_player.play("walk_" + facing)
 	# TODO: Set the animation based on the facing direction
 	# Use: _animation_player.play("idle_" + facing)
 	# This combines "idle_" with whatever direction we're facing
