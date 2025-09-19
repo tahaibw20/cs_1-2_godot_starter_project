@@ -38,7 +38,7 @@ func _physics_process(_delta):
 	
 	# TODO: Set the player's velocity (how fast they're moving)
 	# Godot's CharacterBody2D uses a velocity system
-	
+	# if Input.is_action_just_pressed("ui_select"):
 	
 	# TODO: Update facing direction based on movement
 	if xDirection > 0:
