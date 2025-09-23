@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # TODO: Add speed variable for how fast projectile moves
 # var speed = ?
-var sped = 300
+var speed = 300
 # TODO: Add direction variable to store which way to move
 # var direction = Vector2.ZERO
 var direction : float        
@@ -10,7 +10,7 @@ var direction : float
 func _physics_process(_delta):
 	# TODO: Calculate movement using direction and speed
 	# Similar to player movement: velocity = direction * speed
-	
+	position += speed*direction*_delta
 	
 	# TODO: Apply the movement
 	# Use: move_and_slide()

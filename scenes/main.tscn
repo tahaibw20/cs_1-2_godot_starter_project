@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://def2efafh1llv"]
+[gd_scene load_steps=62 format=4 uid="uid://def2efafh1llv"]
 
 [ext_resource type="Texture2D" uid="uid://dy23vpinyhffc" path="res://sprites/Tiles/MainLev2.0.png" id="2_dhsyk"]
 [ext_resource type="Texture2D" uid="uid://dmimlbfdo7m8s" path="res://sprites/Tiles/RW_MarshLand_entrance.png" id="3_yh0u4"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bhxhn8cbpsqwy" path="res://sprites/Tiles/items/cart.png" id="14_53jwk"]
 [ext_resource type="PackedScene" uid="uid://ddq1bkyn8j1by" path="res://scenes/melee_minotaur.tscn" id="15_dokvp"]
 [ext_resource type="PackedScene" uid="uid://bwo2tsegwct04" path="res://scenes/mini_tauret.tscn" id="16_oljba"]
+[ext_resource type="PackedScene" uid="uid://cdxnilxxlekcf" path="res://scenes/projectile.tscn" id="17_muem4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_okbf4"]
 resource_name = "Cave"
@@ -10984,3 +10985,5 @@ position = Vector2(364, -157)
 
 [node name="MeleeMinotaur7" parent="Enemies/MeleeMinotaurs" instance=ExtResource("15_dokvp")]
 position = Vector2(576, -15)
+
+[node name="projectile" parent="." instance=ExtResource("17_muem4")]

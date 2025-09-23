@@ -95,6 +95,9 @@ func change_coins(amount:int):
 func shoot():
 	# TODO: Create a new projectile instance
 	# Look at the documentation examples in the lesson
+	var projectile_scene = preload("res://scenes/projectile.tscn")
+	var new_projectile = projectile_scene.instantiate()
+	get_parent().add_child(new_projectile)
 	
 	
 	# TODO: Set projectile position to player position
@@ -110,7 +113,7 @@ func shoot():
 	
 	
 	# TODO: Print shooting confirmation
-	# print("Shot projectile facing: ", facing)
+	print("Shot projectile facing: ", facing)
 	
 	pass
 
