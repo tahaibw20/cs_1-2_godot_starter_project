@@ -51,7 +51,9 @@ func _physics_process(_delta):
 		facing = "down"
 	update_animation()
 	
-	
+	if Input.is_action_just_pressed("ui_accept"):
+		shoot()
+		
 	# TODO: Update animation based on facing direction
 	# Call your update_animation() function here
 	
@@ -102,16 +104,15 @@ func shoot():
 	
 	# TODO: Set projectile position to player position
 	# Look at the "Setting Object Position" example
-	
-	
+	new_projectile.global_position = global_position
+	new_projectile.set_direction(facing)
 	# TODO: Set projectile direction using facing variable
 	# Look at the "Calling Functions on Other Objects" example
 	
 	
 	# TODO: Add projectile to the game world
 	# Look at the "Adding Objects to the Game World" example
-	
-	
+	get_parent().add_child(new_projectile)
 	# TODO: Print shooting confirmation
 	print("Shot projectile facing: ", facing)
 	
