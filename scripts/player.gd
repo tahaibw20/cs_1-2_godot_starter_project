@@ -9,6 +9,10 @@ var ySpeed = 300.0
 var yDirection = 0
 var coins = 0
 @export var offset : Vector2 = Vector2(0, -25)
+@onready var melee_hitbox: Area2D = $"melee hitbox"
+var is_attacking = false
+var current_enemy
+var attack_timer = .7
 
 # TODO: Add health system variables
 var maxHealth = 10
@@ -38,16 +42,26 @@ func _physics_process(_delta):
 	# TODO: Update facing direction based on movement
 	if xDirection > 0:
 		facing = "right"
+		melee_hitbox.position = Vector2 (30, 0)
 	elif xDirection < 0:
 		facing = "left"
+		melee_hitbox.position = Vector2 (-30, 0)
 	elif yDirection < 0:
 		facing = "up"
+		melee_hitbox.position = Vector2 (0, -30)
 	elif yDirection > 0:
 		facing = "down"
+		melee_hitbox.position = Vector2 (0, 30)
 	
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
+		
+	if Input.is_action_just_pressed("ui_accept"):
+		is_attacking = true
 	
+	if is_attacking:
+		attack_timer = _delta
+		is_attacking = false
 	# call the animation function
 	update_animation()
 	
@@ -55,6 +69,8 @@ func _physics_process(_delta):
 	# This is a special Godot function that makes the movement happen
 	move_and_slide()
 
+	if current_enemy !=null and is_attacking:
+		current_enemy.queue.free()
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
 	# TODO: Set the animation based on the facing direction
@@ -101,3 +117,11 @@ func shoot():
 	get_tree().get_root().add_child(projectile_clone)
 
 	pass
+
+
+func _on_melee_hitbox_body_entered(body: Node2D) -> void:
+	print (body.name)
+
+	if body.is_in_group("enemy") and is_attacking:
+		current_enemy = body
+			#body.change_health(-1)
