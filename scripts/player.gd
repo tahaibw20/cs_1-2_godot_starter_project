@@ -53,15 +53,17 @@ func _physics_process(_delta):
 		facing = "down"
 		melee_hitbox.position = Vector2 (0, 30)
 	
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("shoot"):
 		shoot()
 		
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("melee"):
 		is_attacking = true
 	
-	if is_attacking:
-		attack_timer = _delta
-		is_attacking = false
+	if is_attacking == true:
+		attack_timer -= _delta
+		if attack_timer <0:
+			is_attacking = false
+			attack_timer = .7
 	# call the animation function
 	update_animation()
 	
@@ -73,14 +75,17 @@ func _physics_process(_delta):
 		current_enemy.queue.free()
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
+	if is_attacking:
+		_animation_player.play("attack_" + facing)
+	else: 
 	# TODO: Set the animation based on the facing direction
-	if velocity.is_zero_approx():
-		_animation_player.play("idle_" + facing)
+		if velocity.is_zero_approx():
+			_animation_player.play("idle_" + facing)
 	# This combines "idle_" with whatever direction we're facing
-		pass
-	elif !velocity.is_zero_approx():
+			pass
+		elif !velocity.is_zero_approx():
 		#walking animation here
-		_animation_player.play("walk_" + facing)
+			_animation_player.play("walk_" + facing)
 		pass
 		
 	
@@ -124,4 +129,5 @@ func _on_melee_hitbox_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("enemy") and is_attacking:
 		current_enemy = body
+		body.queue_free()
 			#body.change_health(-1)
