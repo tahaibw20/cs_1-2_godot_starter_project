@@ -72,7 +72,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 	if current_enemy !=null and is_attacking:
-		current_enemy.queue.free()
+		current_enemy.queue_free()
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
 	if is_attacking:
@@ -124,10 +124,8 @@ func shoot():
 	pass
 
 
-func _on_melee_hitbox_body_entered(body: Node2D) -> void:
+func _on_melee_hitbox_body_entered(body: Node2D):
 	print (body.name)
-
-	if body.is_in_group("enemy") and is_attacking:
+	if body.is_in_group("enemy"):
 		current_enemy = body
-		body.queue_free()
-			#body.change_health(-1)
+		
