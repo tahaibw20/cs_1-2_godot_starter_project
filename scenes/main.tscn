@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://def2efafh1llv"]
+[gd_scene load_steps=63 format=4 uid="uid://def2efafh1llv"]
 
 [ext_resource type="Texture2D" uid="uid://dy23vpinyhffc" path="res://sprites/Tiles/MainLev2.0.png" id="2_dhsyk"]
 [ext_resource type="Texture2D" uid="uid://dmimlbfdo7m8s" path="res://sprites/Tiles/RW_MarshLand_entrance.png" id="3_yh0u4"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dpdol3rld7bec" path="res://scenes/locked_chest.tscn" id="13_8t6ui"]
 [ext_resource type="Texture2D" uid="uid://bhxhn8cbpsqwy" path="res://sprites/items/cart.png" id="14_53jwk"]
 [ext_resource type="PackedScene" uid="uid://ddq1bkyn8j1by" path="res://scenes/melee_minotaur.tscn" id="15_dokvp"]
+[ext_resource type="PackedScene" uid="uid://gbh3hrtw4tb1" path="res://scenes/lever2.tscn" id="15_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://ck8hoo55wysw3" path="res://scenes/lever3.tscn" id="16_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bwo2tsegwct04" path="res://scenes/mini_tauret.tscn" id="16_oljba"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_okbf4"]
@@ -10832,12 +10834,6 @@ position = Vector2(701, 88)
 [node name="Lever" parent="Items" instance=ExtResource("8_17j5i")]
 position = Vector2(-289, 527)
 
-[node name="Lever2" parent="Items" instance=ExtResource("8_17j5i")]
-position = Vector2(-240, 527)
-
-[node name="Lever3" parent="Items" instance=ExtResource("8_17j5i")]
-position = Vector2(-192, 527)
-
 [node name="Lever4" parent="Items" instance=ExtResource("8_17j5i")]
 position = Vector2(-538, 125)
 
@@ -10939,6 +10935,10 @@ position = Vector2(254, 434)
 
 [node name="Spike4" parent="Items/Spike" instance=ExtResource("7_oihfm")]
 position = Vector2(305, 400)
+
+[node name="Lever2" parent="Items" instance=ExtResource("15_dp3eg")]
+
+[node name="Lever3" parent="Items" instance=ExtResource("16_0ld40")]
 
 [node name="Enemies" type="Node" parent="."]
 
