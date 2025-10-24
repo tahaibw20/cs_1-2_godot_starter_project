@@ -13,6 +13,9 @@ var coins = 0
 var is_attacking = false
 var current_enemy
 var attack_timer = .7
+var lever1 = false
+var lever2 = false
+var lever3 = false
 
 # TODO: Add health system variables
 var maxHealth = 10
@@ -58,7 +61,6 @@ func _physics_process(_delta):
 		
 	if Input.is_action_just_pressed("melee"):
 		is_attacking = true
-	
 	if is_attacking == true:
 		attack_timer -= _delta
 		if attack_timer <0:
@@ -66,7 +68,10 @@ func _physics_process(_delta):
 			attack_timer = .7
 	# call the animation function
 	update_animation()
-	
+	if lever1 and lever2 and lever3:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/cave.tscn")
+		print("all levers activated")
+
 	
 	# This is a special Godot function that makes the movement happen
 	move_and_slide()

@@ -10834,9 +10834,6 @@ position = Vector2(701, 88)
 [node name="Lever" parent="Items" instance=ExtResource("8_17j5i")]
 position = Vector2(-289, 527)
 
-[node name="Lever4" parent="Items" instance=ExtResource("8_17j5i")]
-position = Vector2(-538, 125)
-
 [node name="Coins" type="Node" parent="Items"]
 
 [node name="Coin" parent="Items/Coins" instance=ExtResource("9_wjn7r")]
@@ -10937,8 +10934,10 @@ position = Vector2(254, 434)
 position = Vector2(305, 400)
 
 [node name="Lever2" parent="Items" instance=ExtResource("15_dp3eg")]
+position = Vector2(163, -130)
 
 [node name="Lever3" parent="Items" instance=ExtResource("16_0ld40")]
+position = Vector2(-549, -16)
 
 [node name="Enemies" type="Node" parent="."]
 
