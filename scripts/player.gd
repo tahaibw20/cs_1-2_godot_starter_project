@@ -134,3 +134,5 @@ func _on_melee_hitbox_body_entered(body: Node2D):
 	if body.is_in_group("enemy"):
 		current_enemy = body
 		
+#if Input.is_action_just_pressed("F key"):
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/cave.tscn")
