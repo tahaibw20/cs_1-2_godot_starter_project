@@ -71,6 +71,13 @@ func _physics_process(_delta):
 	if lever1 and lever2 and lever3:
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/cave.tscn")
 		print("all levers activated")
+		
+		if Input.is_action_just_pressed("go_back"):
+			lever1 = false 
+			lever2 = false
+			lever3 = false
+			get_tree().call_deferred("change_scene_to_file", "res://scenes/main.tscn")
+			print ("scene changed")
 
 	
 	# This is a special Godot function that makes the movement happen
@@ -134,5 +141,4 @@ func _on_melee_hitbox_body_entered(body: Node2D):
 	if body.is_in_group("enemy"):
 		current_enemy = body
 		
-#if Input.is_action_just_pressed("F key"):
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/cave.tscn")
+	

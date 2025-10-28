@@ -1,7 +1,11 @@
 extends Node
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
-var lever3 = 1
+var lever3 = 0
 var player = null
+
+func _ready() -> void:
+	animation.play("off")
+
 func _process(delta: float): 
 	if Input.is_action_just_pressed("H key") and player != null:
 		if lever3 == 0:
