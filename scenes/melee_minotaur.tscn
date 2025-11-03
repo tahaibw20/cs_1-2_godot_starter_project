@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://ddq1bkyn8j1by"]
+[gd_scene load_steps=133 format=3 uid="uid://ddq1bkyn8j1by"]
 
 [ext_resource type="Texture2D" uid="uid://busa5myjbwb4i" path="res://sprites/Download38899.png" id="1_nohjn"]
 [ext_resource type="Script" uid="uid://di404qslpnp8m" path="res://scenes/melee_minotaur.gd" id="1_vltjp"]
@@ -1000,7 +1000,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xl86w"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vltjp"]
+size = Vector2(64, 104)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vltjp"]
+radius = 31.016125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_adppo"]
+radius = 141.42842
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uk8e4"]
+radius = 228.10744
 
 [node name="MeleeMinotaur" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_vltjp")
@@ -1013,6 +1023,25 @@ frame = 7
 frame_progress = 0.985295
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9.5)
+visible = false
+position = Vector2(-1, 4)
 scale = Vector2(0.5, 0.5)
-shape = SubResource("CircleShape2D_xl86w")
+shape = SubResource("RectangleShape2D_vltjp")
+
+[node name="Melee" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee"]
+shape = SubResource("CircleShape2D_vltjp")
+
+[node name="Chase" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase"]
+shape = SubResource("CircleShape2D_adppo")
+
+[node name="Ranged" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ranged"]
+shape = SubResource("CircleShape2D_uk8e4")
+
+[connection signal="body_entered" from="Melee" to="." method="_on_melee_body_entered"]
+[connection signal="body_exited" from="Melee" to="." method="_on_melee_body_exited"]
