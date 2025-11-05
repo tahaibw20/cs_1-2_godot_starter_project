@@ -4,8 +4,10 @@ var health = maxHealth
 var in_range = false
 var chasing = false
 var attacking = false
-#var projectile_original = preload("res://scenes/arrow.tscn")
+var projectile_original = preload("res://scenes/enemy_arrow.tscn")
 var speed = 200
+var start_time = 2
+var timer = start_time
 @onready var player: CharacterBody2D = $"."
 func change_health(_amount:int):
 		health += _amount
@@ -23,7 +25,10 @@ func _ready():
 
 func _process(delta):
 	if in_range:
-		pass
+		timer -= delta
+		if timer < 0:
+			timer = start_time
+			shoot()
 		
 	elif chasing and !attacking:
 		pass
@@ -54,11 +59,24 @@ func _on_chase_body_exited(body: Node2D) -> void:
 		chasing = false
 		in_range = true
 
-func _on_ranged_body_entered(body: Node2D) -> void:
-	if body. name == "Player":
+func _on_ranged_body_entered(body: Node2D):
+	if body.name == "Player":
 		in_range = true
+		print("inrange")
 
 
 func _on_ranged_body_exited(body: Node2D) -> void:
-	if body. name == "Player":
+	if body.name == "Player":
 		in_range = false
+
+func shoot():
+	var projectile_clone = projectile_original.instantiate()
+	
+	# TODO: Set projectile position to player position
+	projectile_clone.global_position = position +Vector2(10,10)
+	
+	# TODO: Set projectile direction using facing variable
+	projectile_clone.set_direction(player.position)
+	
+	# TODO: Add projectile to the game world
+	get_tree().get_root().add_child(projectile_clone)
