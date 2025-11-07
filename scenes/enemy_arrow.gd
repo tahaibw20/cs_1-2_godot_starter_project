@@ -1,9 +1,9 @@
 extends Area2D
+@onready var animated: AnimatedSprite2D = $AnimatedSprite2D
 var direction
 var speed = 300
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
-	
 
 func _physics_process(delta):
 	position += direction * speed * delta
@@ -16,3 +16,8 @@ func set_direction(target):
 	if target.x <0:
 		scale.x = -.5
 	print(target)
+
+	if target.position.x < position.x:
+		animated.flip_h = true
+	else: 
+		animated.flip_h = false

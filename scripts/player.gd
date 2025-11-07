@@ -140,5 +140,3 @@ func _on_melee_hitbox_body_entered(body: Node2D):
 	print (body.name)
 	if body.is_in_group("enemy"):
 		current_enemy = body
-		
-	
