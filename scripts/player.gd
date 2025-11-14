@@ -18,7 +18,7 @@ var lever2 = false
 var lever3 = false
 
 # TODO: Add health system variables
-var maxHealth = 10
+var maxHealth = 50
 var health = maxHealth
 
 func _ready() -> void:

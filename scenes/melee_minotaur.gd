@@ -5,11 +5,13 @@ var in_range = false
 var chasing = false
 var attacking = false
 var projectile_original = preload("res://scenes/enemy_arrow.tscn")
-var speed = 300
+var speed = 200
 var start_time = 2
 var timer = start_time
 var player = null
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+var facing = "right"
+var attack_timer = 1
 
 #@onready var player: CharacterBody2D = $"."
 func change_health(_amount:int):
@@ -36,14 +38,39 @@ func _process(delta):
 		elif chasing and !attacking:
 			position=position.move_toward(player.position, speed*delta)
 		elif chasing and attacking:
-			pass
+			attacking = true
+			attack_timer -=delta
+			if attack_timer < 0:
+				attack_timer = 1
+				player.change_health (-2)
 		elif !in_range and !chasing and !attacking:
 			pass
-		if player.position.x < position.x:
-			anim.flip_h = true
-		else: 
-			anim.flip_h = false
-		
+		if abs(position.x - player.position.x) < abs(position.y - player.position.y):
+			if position.y > player.position.y:
+				facing = "up"
+			else: facing = "down"
+		else:
+			if position.x > player.position.x:
+				facing = "left"
+			else: facing = "right"
+			update_animation()
+func update_animation():
+	if in_range:
+		anim.play("crossbow_shoot_" + facing)
+	elif chasing:
+		#walking animation here
+		anim.play("walk_" + facing)
+	elif attacking:
+		anim.play("attack_" + facing)
+	
+	
+	else: 
+	# TODO: Set the animation based on the facing direction
+
+		anim.play("crossbow_idle_" + facing)
+	# This combines "idle_" with whatever direction we're facing
+			
+	
 func _on_melee_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		attacking = true
