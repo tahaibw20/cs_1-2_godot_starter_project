@@ -17,7 +17,8 @@ func set_direction(target):
 		scale.x = -.5
 	print(target)
 
-	if target.position.x < position.x:
-		animated.flip_h = true
-	else: 
-		animated.flip_h = false
+	#if target.position.x < position.x:
+		#animated.flip_h = true
+	#else: 
+		#animated.flip_h = false
+		

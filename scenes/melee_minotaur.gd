@@ -5,7 +5,7 @@ var in_range = false
 var chasing = false
 var attacking = false
 var projectile_original = preload("res://scenes/enemy_arrow.tscn")
-var speed = 200
+var speed = 250
 var start_time = 2
 var timer = start_time
 var player = null
@@ -57,19 +57,12 @@ func _process(delta):
 func update_animation():
 	if in_range:
 		anim.play("crossbow_shoot_" + facing)
-	elif chasing:
-		#walking animation here
-		anim.play("walk_" + facing)
 	elif attacking:
 		anim.play("attack_" + facing)
-	
-	
+	elif chasing:
+		anim.play("walk_" + facing)
 	else: 
-	# TODO: Set the animation based on the facing direction
-
 		anim.play("crossbow_idle_" + facing)
-	# This combines "idle_" with whatever direction we're facing
-			
 	
 func _on_melee_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
@@ -114,4 +107,3 @@ func shoot():
 	
 	# TODO: Add projectile to the game world
 	get_tree().get_root().add_child(projectile_clone)
-# finish melee minotaur code and fix arrow directions
